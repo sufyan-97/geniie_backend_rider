@@ -1,0 +1,25 @@
+var argv = require('minimist')(process.argv.slice(2));
+const commands = require('./bin/index');
+let methods = Object.keys(commands)
+try{
+    if(argv._.length ===1){
+        let methodName = argv._[0];
+        if(methodName && methods.includes(methodName)){
+            if(typeof commands[methodName] === 'function'){
+                commands[methodName](argv);
+            } else {
+                console.error('Provided method is not available');
+                process.exit(1)
+            }
+        } else {
+            console.error('Provided method is not available');
+            process.exit(1)
+        }     
+    } else {
+        console.error('Only one method allowed at a once')
+        process.exit(1)
+    }
+} catch (e){
+    console.error(e.message)
+    process.exit(1)
+}

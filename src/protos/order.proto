@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+// package orderService;
+
+// The order service definition.
+service OrderRPC {
+  // Sends a order
+  rpc SendOrder (Request) returns (Reply) {}
+}
+
+// The request message containing the user's name.
+message Request {
+  string id = 1;
+}
+
+message Order {
+  string id = 1;
+  string userId = 2;
+  int32 riderId = 3;
+  string orderId = 4;
+  string transactionId = 5;
+  string orderSummary = 6;
+  string orderStatus = 7;
+}
+
+// The response contains a message 
+message Reply {
+  repeated Order orders = 1;
+
+}

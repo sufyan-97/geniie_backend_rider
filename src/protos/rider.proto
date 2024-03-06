@@ -1,0 +1,160 @@
+syntax = "proto3";
+
+// package locationService;
+
+// The order service definition.
+service riderRPC {
+  // Sends a order
+  rpc AddUser (AddUserRequest) returns (AddUserResponse) {}
+  rpc updateOnlineStatus (UpdateOnlineStatusRequest) returns (UpdateOnlineStatusResponse) {}
+  rpc getAvailableRider (getAvailableRiderRequest) returns (getAvailableRiderResponse) {}
+  rpc updateRiderOccupyStatus (updateRiderStatusRequest) returns (updateRiderStatusResponse) {}
+  rpc updateOrderStatus (updateOrderStatusRequest) returns (updateOrderStatusResponse) {}
+  rpc updateRiderLocation (updateRiderLocationRequest) returns (updateRiderLocationResponse) {}
+  rpc updateRiderOfOrder (updateRiderOfOrderRequest) returns (updateRiderOfOrderResponse) {}
+  rpc updateOrderStatusByRIder (updateOrderStatusByRIderRequest) returns (updateOrderStatusByRIderResponse) {}
+  rpc updateAcceptedStatusOfOrder (updateAcceptedStatusOfOrderRequest) returns (updateAcceptedStatusOfOrderResponse) {}
+  rpc GetRiderLocation (GetRiderLocationRequest) returns (GetRiderLocationResponse) {}
+  rpc UpdateConsumerDeliveryAddress (UpdateConsumerDeliveryAddressRequest) returns (UpdateConsumerDeliveryAddressResponse) {};
+  rpc assignOrderToRider (assignOrderToRiderRequest) returns (assignOrderToRiderResponse) {}
+  rpc isRiderHaveActiveOrder (isRiderHaveActiveOrderRequest) returns (isRiderHaveActiveOrderResponse) {}
+}
+
+// The request message containing the user's name.
+message AddUserRequest {
+  int32 userId = 1;
+  optional int32 restaurantUserId = 2;
+}
+
+message AddUserResponse {
+}
+
+message UpdateOnlineStatusRequest {
+  bool status = 1;
+  int32 userId = 2;
+}
+
+message UpdateOnlineStatusResponse {
+}
+
+message getAvailableRiderRequest {
+  string latitude = 1;
+  string longitude = 2;
+  optional int32 userId = 3;
+  optional bool branchOwnRiders = 4;
+}
+
+message getAvailableRiderResponse {
+  bool status = 1;
+  optional int32 userId = 2;
+  string message = 3;
+  optional bool branchOwnRiders = 4;
+}
+message updateRiderStatusRequest {
+  string isOccupied = 1;
+  int32 userId = 2;
+  optional string data=3;
+}
+
+message updateRiderStatusResponse {
+  bool status = 1;
+  string message = 2;
+}
+
+message assignOrderToRiderRequest {
+  int32 userId = 1;
+  string data=2;
+}
+
+message assignOrderToRiderResponse {
+  bool status = 1;
+  string message = 2;
+}
+
+message updateOrderStatusRequest {
+  string status = 1;
+  int32 orderId = 2;
+  optional string data=3;
+}
+
+message updateOrderStatusResponse {
+  bool status = 1;
+  string message = 2;
+}
+
+message updateRiderLocationRequest {
+  double latitude = 1;
+  double longitude = 2;
+  int32 userId = 3;
+}
+
+message updateRiderLocationResponse {
+  bool status = 1;
+  string message = 2;
+  string data = 3;
+}
+
+message updateRiderOfOrderRequest {
+  int32 riderId = 1;
+  int32 orderId =2;
+}
+
+message updateRiderOfOrderResponse {
+  bool status = 1;
+  string message = 2;
+}
+
+message updateOrderStatusByRIderRequest {
+  string status = 1;
+  int32 orderId = 2;
+  int32 riderId = 3;
+  optional string extraDetail = 4;
+  optional string foodImage = 5;
+  optional string ageRestrictedPhotoId = 6;
+  optional string image = 7;
+}
+
+message updateOrderStatusByRIderResponse {
+  bool status=1;
+  string message=2;
+  optional string data=3;
+}
+
+
+
+message updateAcceptedStatusOfOrderRequest {
+  int32 orderId =1;
+}
+
+message updateAcceptedStatusOfOrderResponse {
+  bool status = 1;
+  string message = 2;
+}
+
+message GetRiderLocationRequest {
+	repeated int32 riderIds = 1;
+}
+message GetRiderLocationResponse {
+  bool status = 1;
+  string data = 2;
+}
+
+message UpdateConsumerDeliveryAddressRequest {
+	int32 orderId = 1;
+	string lat = 2;
+	string long = 3;
+	string address = 4;
+}
+message UpdateConsumerDeliveryAddressResponse {
+  bool status = 1;
+  string message = 2;
+}
+
+message isRiderHaveActiveOrderRequest {
+  int32 riderId =1;
+}
+
+message isRiderHaveActiveOrderResponse {
+  bool status = 1;
+  string message = 2;
+}

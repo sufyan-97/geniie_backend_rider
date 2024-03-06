@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+// The chat service definition.
+service ChatRPC {
+	rpc deactivateConversation (DeactivateConversationRequest) returns (DeactivateConversationResponse) {}
+	rpc bulkDeactivateConversation (BulkDeactivateConversationRequest) returns (BulkDeactivateConversationResponse) {}
+}
+
+// deactivateConversation
+message DeactivateConversationRequest {
+	int32 orderId = 1;
+}
+
+
+// The response contains a message 
+message DeactivateConversationResponse {
+	bool status = 1;
+	string message = 2;
+}
+
+message BulkDeactivateConversationRequest {
+	repeated  int32 orderIds = 1;
+}
+
+
+// The response contains a message 
+message BulkDeactivateConversationResponse {
+	bool status = 1;
+	string message = 2;
+}

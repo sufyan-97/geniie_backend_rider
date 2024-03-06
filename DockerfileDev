@@ -1,0 +1,6 @@
+FROM gzlkhan/node:12-aapt
+WORKDIR /lockmesh_api
+COPY . .
+RUN rm -rf package-lock.json node_modules
+RUN npm install
+RUN npm i -g nodemon

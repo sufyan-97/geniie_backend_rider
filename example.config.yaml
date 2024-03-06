@@ -1,0 +1,84 @@
+
+default:
+  app:
+    hostName: localhost
+    hostURL: http://localhost:3000
+    env: local
+    title: ASAP
+    port: 3004
+    version: 4.1
+    
+    rpcHost: localhost
+    rpcPort: 3005
+
+    ipInfoChecker: http://ipinfo.io/
+    defaultCountry: 'PK'
+    timezone: Europe/London
+    timezoneOffset: +0:00
+
+  secret:
+    key: "keepItSecretWithAuth!@#"
+    expiresIn: "3h"
+    username: "web"
+    password: "google!@#1"
+
+  dashboard:
+    url:
+  
+  mysql:
+    host: "localhost"
+    port: 3306
+    name: "asap_db"
+    username: "root"
+    password: ""
+    ssl: null
+  
+  mongo:
+    host: "localhost"
+    port: 27017
+    name: "asap_db"
+    username: ""
+    password: ""
+    authSource: null
+  
+  redis:
+    host: null
+    port: null
+    prefix: null
+    username: null
+    password: null
+    KEY: null
+  
+  basicAuth:
+    username: microservice
+    password: Google!@#786
+
+  rpcClients:
+    - serviceName: NotificationService
+      host: localhost
+      port: 3001
+      publicKey: null
+      cert: null
+      protoFile: notification.proto
+  
+    - serviceName: OrderRPC
+      host: localhost
+      port: 3005
+      publicKey: null
+      cert: null
+      protoFile: order.proto
+
+    - serviceName: UserService
+      host: localhost
+      port: 3001
+      publicKey: null
+      cert: null
+      protoFile: user.proto
+
+    - serviceName: MainService
+      host: localhost
+      port: 3001
+      publicKey: null
+      cert: null
+      protoFile: mainService.proto
+

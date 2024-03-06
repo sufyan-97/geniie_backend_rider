@@ -1,0 +1,25 @@
+import "google/protobuf/any.proto";
+
+syntax = "proto3";
+
+service RiderAppService {
+	rpc saveLanguageStrings (Request) returns (Response);
+    rpc getServiceInfo (ServiceInfoRequest) returns (ServiceInforResponse);
+}
+
+message Request {
+    string data =1;
+}
+
+message Response {
+	bool status = 1;
+    string data = 2;
+}
+
+message ServiceInfoRequest {
+}
+
+message ServiceInforResponse {
+    bool status = 1;
+    string data = 2;
+}

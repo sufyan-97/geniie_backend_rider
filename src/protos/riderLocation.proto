@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+service RiderLocationService {
+	rpc SendNotification (SendNotficationRequest) returns (SendNotificatioResponse);
+}
+
+message SendNotficationRequest {
+	int32 userId =1;
+	string title =2;
+	string body =3;
+	string data =4;
+}
+
+message SendNotificatioResponse {
+	bool success =1;
+}
+

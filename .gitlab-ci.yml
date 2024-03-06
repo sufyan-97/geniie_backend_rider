@@ -1,0 +1,43 @@
+image: alpine
+
+variables:
+  WORK_DIR: ${CI_PROJECT_NAME}
+  BRANCH: ${CI_COMMIT_REF_NAME}
+
+stages:
+  - deploy
+  - devDeploy
+
+deployRiderPluginLive:
+  stage: deploy
+  environment:
+    name: deployRiderPluginLive
+    url: https://geniie.uk/api
+  before_script:
+    - 'which ssh-agent || ( apk add --update --no-cache openssh )'
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$PRIVATE_KEY")
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  script:
+    - echo "Deploy to live server"
+    - ssh web@188.166.147.98 "cd /var/www/html/${WORK_DIR} && git reset --hard && git pull origin ${BRANCH} && npm install  && pm2 reload all &&  exit"
+  only:
+    - main
+
+deployRiderPluginDev:
+  stage: devDeploy
+  environment:
+    name: deployRiderPluginDev
+    url: https://dev.geniie.uk/api
+  before_script:
+    - 'which ssh-agent || ( apk add --update --no-cache openssh )'
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$PRIVATE_KEY")
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  script:
+    - echo "Deploy to live server"
+    - ssh web@167.172.59.65 "cd /var/www/html/${WORK_DIR} && git reset --hard && git pull origin ${BRANCH} && npm install  && pm2 reload all &&  exit"
+  only:
+    - development

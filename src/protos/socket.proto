@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+// The order service definition.
+service SocketRPC {
+	// Sends a order
+	rpc SendEvent (SendEventRequest) returns (SendEventResponse) {}
+
+	rpc SendAndSaveNotification (SendAndSaveNotificationRequest) returns (SendAndSaveNotificationResponse) {}
+}
+
+message SendEventRequest {
+	string socketEventName=1;
+	string instanceName=2;
+	string data=3;
+	repeated int32 userIds = 4;
+}
+
+message SendEventResponse {
+}
+
+message SendAndSaveNotificationRequest {
+	string socketInstance=1;
+	string socketEventName=2;
+	repeated int32 userIds=3;
+	string subject=4;
+	string description=5;
+	string appName=6;
+	string type=7;
+	string notificationData=8;
+}
+
+message SendAndSaveNotificationResponse {
+}

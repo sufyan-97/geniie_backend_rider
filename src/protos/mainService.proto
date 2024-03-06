@@ -1,0 +1,16 @@
+import "google/protobuf/any.proto";
+
+syntax = "proto3";
+
+service MainService {
+	rpc GetRoles (GetRolesRequest) returns (GetRolesResponse);
+}
+
+
+message GetRolesRequest {
+	bool status = 1;
+}
+message GetRolesResponse {
+	bool status = 1;
+	string data = 2;
+}

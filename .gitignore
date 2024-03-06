@@ -1,0 +1,44 @@
+# compiled output
+
+
+# dependencies
+node_modules
+package-lock.json
+
+# IDEs and editors
+/.vscode
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# Env Files
+.env
+config.yaml
+
+# Application
+src/i18n/*
+!src/i18n/.gitkeep
+
+src/storage/*
+!src/storage/.gitkeep
+# !src/storage/images/.gitkeep
+# !src/storage/cache/.gitkeep
+# !src/storage/images/defaultProfile.png
+
+certs/*
+!certs/.gitkeep

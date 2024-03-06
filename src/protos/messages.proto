@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+service EmployeeService {
+	rpc GetAll (GetAllRequest) returns (stream EmployeeResponse);
+}
+
+
+
+message GetAllRequest {}
+
+message EmployeeResponse {
+	string query =1;
+}
+

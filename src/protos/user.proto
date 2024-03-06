@@ -1,0 +1,35 @@
+import "google/protobuf/any.proto";
+
+syntax = "proto3";
+
+service UserService {
+	rpc GetRiders (GetRidersRequest) returns (GetRidersResponse);
+	rpc GetUsers (GetUsersRequest) returns (GetRidersResponse);
+	rpc UpdateUserRewardPoints (UpdateUserRewardPointsRequest) returns (UpdateUserRewardPointsResponse);
+}
+
+
+message GetRidersRequest {
+}
+
+message GetUsersRequest {
+	repeated int32 ids = 1;
+}
+
+message GetRidersResponse {
+	bool status = 1;
+    string data = 2;
+}
+
+message UpdateUserRewardPointsRequest {
+	int32 userId = 1;
+	int32 relevantId = 2;
+	string type = 3;
+	int32 points = 4;
+	string data=5;
+}
+message UpdateUserRewardPointsResponse {
+	bool status = 1;
+	string message = 2;
+}
+

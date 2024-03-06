@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+// package locationService;
+
+// The order service definition.
+service riderRPCMain {
+  // Sends a order
+  rpc updateRiderStatus (UpdateRiderStatusRequest) returns (UpdateRiderStatusResponse) {}
+}
+
+message UpdateRiderStatusRequest {
+  string status = 1;
+  repeated int32 userIds = 2;
+  string data = 3;
+
+}
+
+message UpdateRiderStatusResponse {
+}
